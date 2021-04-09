@@ -27,24 +27,24 @@ app.post('tweets', (req, res) => {
         '${req.body.user_id}',
         '${req.body.content}',
         '${moment().utc().format("YYYY-MM-DD HH:MM:SS")}'
-    )`;
-});
-
-database.query(sql, (err, result) => {
-    if (err) {
-        res.status(400).json({
-            message:err
-        });
-            return;
-    }
-
-    // If there is no error
-    res.status(200).json({
-        status: 200,
-        success:true
-    });
+        `;
+    database.query(sql, (err, result) => {
+        if (err) {
+            res.status(400).json({
+                message:err
+            });
+                return;
+        }
     
+        // If there is no error
+        res.status(200).json({
+            status: 200,
+            success:true
+        });
+        
+    });
 });
+
 
 app.delete('/tweets/:id', (req, res) => {
     let sql = `DELETE FROM tweet WHERE id = ${req.params.id}`;
