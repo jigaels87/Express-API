@@ -4,7 +4,7 @@ var database = require('../confiq/database');
 var moment = require('moment');
 
 // For getting all the tweets from a specific user
-app.get('tweets/user/:id', (req, res) => {
+app.get('/tweets/user/:id', (req, res) => {
     let sql = `SELECT * FROM tweet WHERE user_id = ${req.params.id}`;
 
     database.query(sql, (err, result) => {
@@ -22,12 +22,13 @@ app.get('tweets/user/:id', (req, res) => {
 });
 
 // For adding our tweets
-app.post('tweets', (req, res) => {
+app.post('/tweets', (req, res) => {
     let sql = `INSERT INTO tweet (user_id, content, date_time) VALUES (
         '${req.body.user_id}',
         '${req.body.content}',
-        '${moment().utc().format("YYYY-MM-DD HH:MM:SS")}'
-        `;
+        '${moment().utc().format("YYYY-MM-DD hh:mm:ss")}'
+    )`;
+
     database.query(sql, (err, result) => {
         if (err) {
             res.status(400).json({
@@ -50,7 +51,7 @@ app.delete('/tweets/:id', (req, res) => {
     let sql = `DELETE FROM tweet WHERE id = ${req.params.id}`;
 
     database.query(sql, (err, result) => {
-        if(err) {
+        if (err) {
             res.status(400).json({
                 status: 400,
                 success: false

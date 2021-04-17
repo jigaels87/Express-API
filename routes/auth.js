@@ -29,7 +29,7 @@ app.post('/authenticate', (req, res) => {
             if (result.length) res.json(result[0]);
             else res.json({
                 id : "",
-                message : "Wrong username or password"
+                message : "Wrong username or password!"
             });
         });
     }
@@ -42,7 +42,7 @@ function getCredentialsFromHeaders(req) {
     // Get the authorization from headers (3sldfs293si29die93d83) <-- base64
     let authorization = req.header('authorization');
 
-    // Convert autjorization to array
+    // Convert authorization to array
     let authData = authorization.split(" ");
 
     // Convert to utf-8

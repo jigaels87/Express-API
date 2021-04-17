@@ -22,8 +22,10 @@ app.use(express.urlencoded({
 
 // Register routes in the main index.js
 app.use('/',[
+    require('./routes/auth'),
+    require('./validations/auth'),
     require('./routes/tweet')
-])
+]);
 
 // http://localhost:3005/tweets - GET, POST
 // http://localhost:3005/tweets/user/:id - GET
